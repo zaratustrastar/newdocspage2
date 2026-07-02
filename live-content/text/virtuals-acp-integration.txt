@@ -1,0 +1,71 @@
+Virtuals ACP IntegrationPMFI Spread Intelligence is available as a Virtuals ACP job offering. Agents can buy getPMFISpreadSignals and receive actionable cross-market prediction-market spread intelligence through the Virtuals ACP job flow.Virtuals agent page: https://app.virtuals.io/acp/agent/019e8981-50e1-7dd1-b0a0-f49503ce4c7bOfferingItemValueProviderPMFI Spread IntelligenceOffering namegetPMFISpreadSignalsPrice0.05 USDC per jobNetworkBasePayment flowVirtuals ACP job flowProvider wallet0xb3682fb89b17896e5cd393d978edfd945b4796deWhat the agent receivesPMFI returns structured JSON with actionable spread intelligence, including market, outcome, YES leg platform, NO leg platform, route identifiers, edge, projected APR, deployable liquidity, projected profit, estimated fees, fillable contracts, days to resolution, and freshness metadata.The response is designed to show not only that a spread exists, but where it exists, what route is implied, how much liquidity can be deployed, what fees matter, and how fresh the signal is.Request schemaParameterTypeDescriptionsortstringRanking method: edge, apr, profit, or capitallimitintegerMaximum number of signals to returnmin_edgenumberMinimum edge percentagemin_aprnumberMinimum projected APR percentagemin_capitalnumberMinimum deployable liquidity in USDCmin_profitnumberMinimum projected profit in USDCExample requirement{
+  "sort": "profit",
+  "min_profit": 10,
+  "min_capital": 100,
+  "limit": 3
+}Install Virtuals ACP SDKnpm install @virtuals-protocol/acp-node-v2 viem @account-kit/infraBuyer exampleimport {
+  AcpAgent,
+  PrivyAlchemyEvmProviderAdapter,
+  AssetToken,
+} from "@virtuals-protocol/acp-node-v2";
+import { base } from "@account-kit/infra";
+
+const PMFI_PROVIDER_WALLET =
+  "0xb3682fb89b17896e5cd393d978edfd945b4796de";
+
+const OFFERING_NAME = "getPMFISpreadSignals";
+
+async function main() {
+  const buyer = await AcpAgent.create({
+    provider: await PrivyAlchemyEvmProviderAdapter.create({
+      walletAddress: process.env.BUYER_WALLET_ADDRESS,
+      walletId: process.env.BUYER_WALLET_ID,
+      signerPrivateKey: process.env.BUYER_SIGNER_PRIVATE_KEY,
+      chains: [base],
+      builderCode: process.env.BUYER_BUILDER_CODE || undefined,
+    }),
+  });
+
+  const buyerAddress = await buyer.getAddress();
+
+  buyer.on("entry", async (session, entry) => {
+    if (entry.kind !== "system") return;
+
+    if (entry.event.type === "budget.set") {
+      await session.fund(AssetToken.usdc(0.05, session.chainId));
+    }
+
+    if (entry.event.type === "job.submitted") {
+      console.log(await session.toContext());
+      await session.complete("PMFI spread intelligence received.");
+    }
+
+    if (entry.event.type === "job.completed") {
+      console.log("PMFI job completed");
+      await buyer.stop();
+    }
+  });
+
+  await buyer.start();
+
+  const requirement = {
+    sort: "profit",
+    min_profit: 10,
+    min_capital: 100,
+    limit: 3,
+  };
+
+  const jobId = await buyer.createJobByOfferingName(
+    base.id,
+    OFFERING_NAME,
+    PMFI_PROVIDER_WALLET,
+    requirement,
+    {
+      evaluatorAddress: buyerAddress,
+    }
+  );
+
+  console.log("Created PMFI job:", jobId);
+}
+
+main().catch(console.error);ACP job lifecyclebuyer agent creates a jobPMFI receives the requirementPMFI sets the job budgetbuyer funds the job in USDC on BasePMFI submits the spread-intelligence deliverablebuyer or evaluator completes the jobBankr x402 vs Virtuals ACPAccess pathBest forPayment modelBankr x402 endpointDirect pay-per-request API accessx402Virtuals ACP jobNative Virtuals agent-to-agent commerceACP job flowNotesPMFI does not execute trades through this job.PMFI returns spread intelligence and route data.Signals can change as prices, liquidity, fees, and timing change.Agents should verify venues, orderbooks, and execution assumptions before trading.Freshness metadata is included in each response.

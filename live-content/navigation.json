@@ -1,0 +1,98 @@
+[
+  {
+    "id": "what-is-pmfi",
+    "title": "What is PMFI?",
+    "renderedHeading": "What is PMFI?",
+    "htmlFile": "what-is-pmfi.html",
+    "textFile": "what-is-pmfi.txt",
+    "characters": 552
+  },
+  {
+    "id": "parbitrage-vault",
+    "title": "pArbitrage Vault",
+    "renderedHeading": "pArbitrage Vault",
+    "htmlFile": "parbitrage-vault.html",
+    "textFile": "parbitrage-vault.txt",
+    "characters": 933
+  },
+  {
+    "id": "strategy-logic",
+    "title": "Strategy logic",
+    "renderedHeading": "Strategy logic",
+    "htmlFile": "strategy-logic.html",
+    "textFile": "strategy-logic.txt",
+    "characters": 4014
+  },
+  {
+    "id": "accounting-metrics",
+    "title": "Accounting & metrics",
+    "renderedHeading": "Accounting & metrics",
+    "htmlFile": "accounting-metrics.html",
+    "textFile": "accounting-metrics.txt",
+    "characters": 5703
+  },
+  {
+    "id": "user-flow",
+    "title": "User flow",
+    "renderedHeading": "User flow",
+    "htmlFile": "user-flow.html",
+    "textFile": "user-flow.txt",
+    "characters": 3412
+  },
+  {
+    "id": "liquidity-management",
+    "title": "Liquidity management",
+    "renderedHeading": "Liquidity management",
+    "htmlFile": "liquidity-management.html",
+    "textFile": "liquidity-management.txt",
+    "characters": 1423
+  },
+  {
+    "id": "spread-intelligence-api",
+    "title": "Spread Intelligence API",
+    "renderedHeading": "Spread Intelligence API",
+    "htmlFile": "spread-intelligence-api.html",
+    "textFile": "spread-intelligence-api.txt",
+    "characters": 2809
+  },
+  {
+    "id": "virtuals-acp-integration",
+    "title": "Virtuals ACP Integration",
+    "renderedHeading": "Virtuals ACP Integration",
+    "htmlFile": "virtuals-acp-integration.html",
+    "textFile": "virtuals-acp-integration.txt",
+    "characters": 3855
+  },
+  {
+    "id": "risk-disclosure",
+    "title": "Risk disclosure",
+    "renderedHeading": "Risk disclosure",
+    "htmlFile": "risk-disclosure.html",
+    "textFile": "risk-disclosure.txt",
+    "characters": 2285
+  },
+  {
+    "id": "risk-mitigation",
+    "title": "Risk mitigation",
+    "renderedHeading": "Risk mitigation",
+    "htmlFile": "risk-mitigation.html",
+    "textFile": "risk-mitigation.txt",
+    "characters": 2181
+  },
+  {
+    "id": "contract-addresses",
+    "title": "Contract addresses",
+    "renderedHeading": "Contract addresses",
+    "htmlFile": "contract-addresses.html",
+    "textFile": "contract-addresses.txt",
+    "characters": 1461
+  },
+  {
+    "id": "changelog",
+    "title": "Changelog",
+    "renderedHeading": "Changelog",
+    "htmlFile": "changelog.html",
+    "textFile": "changelog.txt",
+    "characters": 373
+  }
+]

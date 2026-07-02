@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Spread Intelligence API</title>
+</head>
+<body>
+<article class="docs-article max-w-[820px]"><h1>Spread Intelligence API</h1><p>PMFI Spread Intelligence provides paid x402 access to actionable cross-market prediction-market spread signals for autonomous agents and applications.</p><p>Agents receive market, outcome, YES leg platform, NO leg platform, route identifiers, edge, projected APR, deployable liquidity, projected profit, fees, fillable contracts, and freshness metadata.</p><h2 id="endpoint">Endpoint</h2><pre class="docs-code-block"><code>https://x402.bankr.bot/0x7e5f1530554d021a66b412972720e050a7a433c9/spread-intelligence</code></pre><h2 id="price-and-network">Price and network</h2><table><thead><tr><th>Item</th><th>Value</th></tr></thead><tbody><tr><td>Price</td><td>$0.05 USDC per successful request</td></tr><tr><td>Network</td><td>Base</td></tr><tr><td>Payment standard</td><td>x402</td></tr></tbody></table><h2 id="skills">Skills</h2><ul><li>Discover actionable cross-market spread signals</li><li>Rank signals by edge</li><li>Rank signals by projected APR</li><li>Rank signals by projected profit</li><li>Rank signals by deployable liquidity</li><li>Filter by minimum edge</li><li>Filter by minimum projected APR</li><li>Filter by minimum deployable liquidity</li><li>Filter by minimum projected profit</li><li>Limit returned signals</li></ul><h2 id="query-parameters">Query parameters</h2><table><thead><tr><th>Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>sort</code></td><td>Ranking method: <code>edge</code>, <code>apr</code>, <code>profit</code>, or <code>capital</code></td></tr><tr><td><code>limit</code></td><td>Maximum number of signals to return</td></tr><tr><td><code>min_edge</code></td><td>Minimum edge percentage</td></tr><tr><td><code>min_apr</code></td><td>Minimum projected APR percentage</td></tr><tr><td><code>min_capital</code></td><td>Minimum deployable liquidity in USDC</td></tr><tr><td><code>min_profit</code></td><td>Minimum projected profit in USDC</td></tr></tbody></table><h2 id="quickstart">Quickstart</h2><p>Install and log in to Bankr CLI, then call the x402 endpoint.</p><pre class="docs-code-block"><code>npm install -g @bankr/cli
+bankr login
+
+export PMFI_X402_URL="https://x402.bankr.bot/0x7e5f1530554d021a66b412972720e050a7a433c9/spread-intelligence"
+
+bankr x402 schema "$PMFI_X402_URL"
+
+bankr x402 call "$PMFI_X402_URL?sort=edge&amp;min_edge=2&amp;min_apr=5&amp;min_capital=100&amp;min_profit=5&amp;limit=10"</code></pre><h2 id="example-requests">Example requests</h2><pre class="docs-code-block"><code># Highest edge signals
+bankr x402 call "$PMFI_X402_URL?sort=edge&amp;min_edge=2&amp;limit=10"
+
+# Highest projected APR signals
+bankr x402 call "$PMFI_X402_URL?sort=apr&amp;min_apr=10&amp;limit=10"
+
+# Highest projected profit signals
+bankr x402 call "$PMFI_X402_URL?sort=profit&amp;min_profit=10&amp;limit=10"
+
+# Highest deployable liquidity signals
+bankr x402 call "$PMFI_X402_URL?sort=capital&amp;min_capital=500&amp;limit=10"</code></pre><h2 id="response-fields">Response fields</h2><table><thead><tr><th>Field</th><th>Description</th></tr></thead><tbody><tr><td><code>pmfi_signal_id</code></td><td>PMFI signal identifier</td></tr><tr><td><code>rank</code></td><td>Signal rank in the response</td></tr><tr><td><code>market_title</code></td><td>Market title</td></tr><tr><td><code>outcome</code></td><td>Outcome attached to the signal</td></tr><tr><td><code>metrics.edge_pct</code></td><td>Cross-market edge percentage</td></tr><tr><td><code>metrics.apr_pct</code></td><td>Projected APR percentage</td></tr><tr><td><code>metrics.deployable_liquidity_usdc</code></td><td>Estimated deployable liquidity in USDC</td></tr><tr><td><code>metrics.projected_profit_usdc</code></td><td>Estimated projected profit in USDC</td></tr></tbody></table><h2 id="raw-unpaid-request">Raw unpaid request</h2><p>A normal unpaid HTTP request should return 402 Payment Required. To receive data, use Bankr CLI or another x402-compatible client.</p><pre class="docs-code-block"><code>curl -i "$PMFI_X402_URL?sort=edge&amp;min_edge=2&amp;min_apr=5&amp;min_capital=100&amp;min_profit=5&amp;limit=10"</code></pre><h2 id="important-notes">Important notes</h2><ul><li>PMFI Spread Intelligence is informational only.</li><li>The API does not execute trades.</li><li>The API does not guarantee profit.</li><li>Signals can change as market prices, liquidity, fees, and timing change.</li><li>No PMFI internal API key is required to consume the x402 endpoint.</li></ul></article>
+</body>
+</html>

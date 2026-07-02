@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>pArbitrage Vault</title>
+</head>
+<body>
+<article class="docs-article max-w-[820px]"><h1>pArbitrage Vault</h1><p>The pArbitrage Vault is an automated USDC vault for prediction market arbitrage.</p><p>Users deposit USDC and receive pARB vault shares after their deposit request is processed by a vault report.</p><p>The vault strategy searches for paired YES and NO exposure across supported prediction market venues. If pricing conditions are met, the strategy may open a paired position.</p><h2 id="core-mechanism">Core mechanism</h2><p>In binary prediction markets, YES + NO settle to $1 together.</p><p>When the combined cost of YES + NO falls below $1 after fees and execution buffers, the vault can capture the spread.</p><h2 id="what-users-hold">What users hold</h2><p>Users hold pARB shares.</p><p>Users do not directly hold or manage individual prediction market positions. The vault and offchain execution system manage strategy execution, accounting, and reporting.</p><h2 id="contract-address">Contract address</h2><table><thead><tr><th>Contract</th><th>Address</th></tr></thead><tbody><tr><td>pArbitrage Vault V2</td><td><span class="inline-flex items-center gap-2"><code>0xd1ccBc2Aa6e2f41817b62448089d4125E62df4fb</code><button type="button" class="docs-copy-btn">Copy</button></span></td></tr></tbody></table><h2 id="important-note">Important note</h2><p>The vault does not guarantee profit, APR, APY.</p></article>
+</body>
+</html>

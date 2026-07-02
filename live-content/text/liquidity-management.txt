@@ -1,0 +1,13 @@
+Liquidity managementThe pArbitrage Vault keeps idle USDC in the vault and transfers deployable excess USDC to the arb servicer wallet through tend().tend() is permissionless, but it does not change official accounting.Idle balanceidleBalance =
+  usdc.balanceOf(vault)
+- totalPendingDepositAssets
+- totalClaimableRedeemAssetsIf vault balance is less than reserved assets:idleBalance = 0Target idletargetIdle =
+  max(
+    lastReportedBackingAssets × targetIdleBps / 10,000,
+    minimumIdleAmount
+  )ParameterValuetargetIdleBps1000Target idle percentage10%minimumIdleAmount1e6Minimum idle amount1 USDCtendCooldown60 secondsreportCooldown3600 secondsRedemption reserveredemptionReserve = totalPendingRedeemShares × officialPPS / NAV_PRECISIONTotal reservetotalReserve =
+  redemptionReserve
++ targetIdleDeployable amountdeployable =
+  idleBalance > totalReserve
+    ? idleBalance - totalReserve
+    : 0If deployable > 0, tend() transfers deployable USDC to:arbServicerWalletRedemption repayment orderWhen redemptions need to be paid, PMFI prioritizes available liquidity before touching open positions.The operational repayment order is:Vault idle USDCServicer wallet USDCPolymarket USDC balanceKalshi balanceOpinion balanceSettled venue proceedsPMFI does not normally sell open arbitrage positions before resolution date.Open positions are expected to resolve at settlement rather than being force-sold for routine redemptions.

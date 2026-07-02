@@ -1,0 +1,1 @@
+Changelog2026-05-18DocsUpdated documentation structure.Added market pairing explanation.Added VWAP explanation.Updated second-leg handling explanation.Added risk mitigation page.Moved operational dependencies and known limitations into risk disclosure.Moved contract functions and key events into contract addresses.AppAdded vault activity section.Added open pairs preview.
